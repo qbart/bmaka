@@ -160,29 +160,15 @@ use { 'petertriho/nvim-scrollbar', config = function() require('plugins.scrollba
 use { 'vim-scripts/LargeFile' }                                                                      -- large files helper
 use { 'kevinhwang91/nvim-hlslens', config = function() require('plugins.hlslens') end }              -- better highlight search
 
-use(
-    {
-        "lmburns/lf.nvim",
-        config = function()
-          -- This feature will not work if the plugin is lazy-loaded
-          vim.g.lf_netrw = 1
-
-          require("lf").setup(
-              {
-                  escape_quit = false,
-                  border = "rounded",
-                  highlights = {FloatBorder = {guifg = require("kimbox.palette").colors.magenta}}
-              }
-          )
-
-          vim.keymap.set("n", "<C-o>", ":Lf<CR>")
-        end,
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "akinsho/toggleterm.nvim"
-        }
-    }
-)
+use { "lmburns/lf.nvim",
+  config = function()
+    require("plugins.lf")
+  end,
+  requires = {
+    "nvim-lua/plenary.nvim",
+    "akinsho/toggleterm.nvim"
+  }
+}
 
 pcall(require,'lsp')
 pcall(require,'plugins.autopairs')
