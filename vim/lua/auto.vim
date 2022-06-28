@@ -35,8 +35,8 @@ augroup color_scheme_tweaks
 augroup END
 
 
-autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
-autocmd VimLeave * call system("tmux rename-window  ")
+"autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+"autocmd VimLeave * call system("tmux rename-window  ")
 
 augroup filetype_tweaks
   autocmd!

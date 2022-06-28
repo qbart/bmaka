@@ -36,7 +36,6 @@ use {
 use {
   "hrsh7th/nvim-cmp",
   requires = {
-    "hrsh7th/cmp-copilot",
     "quangnguyen30192/cmp-nvim-ultisnips",
     "hrsh7th/cmp-nvim-lsp",
     "f3fora/cmp-spell",
@@ -47,8 +46,6 @@ use {
     "lukas-reineke/cmp-rg",
   }
 }
-use { 'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp' }
-use { 'github/copilot.vim' }
 use { 'SirVer/ultisnips', config = function() require('plugins.ultisnips') end }
 use { 'kamykn/spelunker.vim',                                                                -- spell checker
   requires = { { "kamykn/popup-menu.nvim" } },
@@ -118,15 +115,6 @@ use { 'knubie/vim-kitty-navigator',
   -- cond = function() return vim.fn.exists('$KITTY_WINDOW_ID') == 1 end,
   config = function() require('plugins.kitty-navigator') end
 }
-use { 'christoomey/vim-tmux-navigator',
-  -- cond = function() return vim.fn.exists('$TMUX') == 1 end,
-  config = function()
-    require('plugins.tmux-navigator')
-  end,
-  requires = {
-    'roxma/vim-tmux-clipboard',
-    'preservim/vimux'
-  } }
 use { 'junkblocker/git-time-lapse', config = function() require('plugins.git-time-lapse') end }
 use { 'lmeijvogel/vim-yaml-helper', ft = { 'yaml', 'yml' } }
 use { 'mogelbrod/vim-jsonpath' }
@@ -171,6 +159,30 @@ use { 'szw/vim-maximizer', config = function() require('plugins.maximizer') end 
 use { 'petertriho/nvim-scrollbar', config = function() require('plugins.scrollbar') end }            -- scrollbar
 use { 'vim-scripts/LargeFile' }                                                                      -- large files helper
 use { 'kevinhwang91/nvim-hlslens', config = function() require('plugins.hlslens') end }              -- better highlight search
+
+use(
+    {
+        "lmburns/lf.nvim",
+        config = function()
+          -- This feature will not work if the plugin is lazy-loaded
+          vim.g.lf_netrw = 1
+
+          require("lf").setup(
+              {
+                  escape_quit = false,
+                  border = "rounded",
+                  highlights = {FloatBorder = {guifg = require("kimbox.palette").colors.magenta}}
+              }
+          )
+
+          vim.keymap.set("n", "<C-o>", ":Lf<CR>")
+        end,
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "akinsho/toggleterm.nvim"
+        }
+    }
+)
 
 pcall(require,'lsp')
 pcall(require,'plugins.autopairs')
