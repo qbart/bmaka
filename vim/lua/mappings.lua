@@ -20,8 +20,8 @@ nnoremap('q:', '<NOP>') -- disable command line
 nnoremap('ZZ', '<NOP>') -- disable quit with ZZ
 
 -- better movement
-inoremap('jk', '<ESC>')
-tmap('jk', [[<C-\><C-n>]])
+-- inoremap('jk', '<ESC>')
+-- tmap('jk', [[<C-\><C-n>]])
 tmap('<esc>', [[<C-\><C-n>]])
 nmap('<leader>h', '^')
 nmap('<leader>l', '$')
